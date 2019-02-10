@@ -21,6 +21,15 @@ function showUnhealthy(_, container) {
 }
 
 function init() {
+  if (!localStorage.selectedTab || localStorage.selectedTab == "all-targets"){
+    $("div label:nth-child(1)").addClass("active");
+    $(".table-container").each(showAll);
+  }
+  else if (localStorage.selectedTab == "unhealthy-targets") {
+    $("div label:nth-child(2)").addClass("active");
+    $(".table-container").each(showUnhealthy);
+  }
+
   $("button.targets").click(function () {
     const tableTitle = $(this).closest("h2").find("a").attr("id");
 
@@ -45,8 +54,10 @@ function init() {
 
     if (target === "all-targets") {
       $(".table-container").each(showAll);
+      localStorage.setItem("selectedTab", "all-targets");
     } else if (target === "unhealthy-targets") {
       $(".table-container").each(showUnhealthy);
+      localStorage.setItem("selectedTab", "unhealthy-targets");
     }
   });
 }
