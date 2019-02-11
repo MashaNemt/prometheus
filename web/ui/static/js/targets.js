@@ -22,11 +22,10 @@ function showUnhealthy(_, container) {
 
 function init() {
   if (!localStorage.selectedTab || localStorage.selectedTab == "all-targets"){
-    $("div label:nth-child(1)").addClass("active");
+    $("#all-targets").parent().addClass("active");
     $(".table-container").each(showAll);
-  }
-  else if (localStorage.selectedTab == "unhealthy-targets") {
-    $("div label:nth-child(2)").addClass("active");
+  } else if (localStorage.selectedTab == "unhealthy-targets") {
+    $("#unhealthy-targets").parent().addClass("active");
     $(".table-container").each(showUnhealthy);
   }
 
